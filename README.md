@@ -232,3 +232,8 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 - Mercifully, we have `terraform.tfstate.backup` which is the previous state of the backup, as per the `serial`
 
 
+#### Terraform **Destroy**
+
+- It's a command to nuke the infrastructure resources `terraform destroy`
+It will display a list of resources that it plans to destroy, to which we can `-- auto-approve` to expedite. 
+- Terraform will initiate the process to destroy those resources,
