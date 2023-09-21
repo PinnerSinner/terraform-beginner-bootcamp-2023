@@ -145,3 +145,90 @@ AWS_DEFAULT_REGION='us-west-2'
 ```
 
 Will need to generate ALI CLI access keys in order to gain admin permissions inhereted from IAM User. 
+
+
+## Terraform Basics 
+
+### Terraform Registry
+- Terraform sources their providers and modules from the Terraform registry which is located at [registry.terraform.io](https://registry.terraform.io)
+
+### Terraform **Providers** (Direct vendor API Interfaces)
+
+*What they do:* 
+- Providers are like connectors in Terraform. They help you interact with various cloud or infrastructure services (e.g., AWS, Azure, Google Cloud) or other systems (e.g., databases) to create, update, or manage resources.
+- For example, If you want to create an AWS EC2 instance, you'd use the AWS provider to communicate with AWS services.
+[Read up on Terraform Providers ](https://registry.terraform.io/browse/providers)
+
+### Terraform **Modules**  (The Templates)
+*What they are:*
+- Modules are reusable templates or blueprints for creating sets of related resources. They make it easier to manage and organize your infrastructure code by breaking it into smaller, reusable parts.
+- You might create a module for a web server that includes an EC2 instance, security group, and load balancer configuration. You can then reuse this module for multiple web servers. It's a way to make large amount of terraform code modular, portable and repeatable. 
+[Read up on Terraform Modules](https://registry.terraform.io/browse/modules)
+
+The idea behind Terraform modules is to promote code reusability, maintainability, and modularity in your infrastructure as code (IaC) projects. Modules allow you to encapsulate and package together a set of related Terraform resources, configurations, and logic into a single, reusable component
+
+In a nutshell, providers connect Terraform to external services, while modules help you structure and reuse your infrastructure code. They're both essential for managing infrastructure as code effectively.
+
+### Terraform **Console**
+
+Can see a list of all the Terraform commands by simply typing `terraform`, and to check version `terraform --version`
+
+#### Terraform Init
+- At the start of a new Terraform project, run `terraform init` into the terminal to download the binaries for the terraform providers to be used later on in the project. 
+- It's like preparing a toolbox before going ahead to start doing some DIY at home. It's a command to ensure that we have all the right tools (binaries) ready for the job. 
+- In this case _"tools"_ are Terraform providers which are connnectors to various cloud or infrastructure services. 
+Step by step, running ***terraform init*** will:
+- [] *Download Providers*: Fetching the necessary TF provider binaries for the cloud services or resources to be used in the project. Providers are like translators that help TF talk to specific services like AWS etc.
+- [] *Creates a working directory*: It sets up a ___".terraform"__ directory in the project folder to store these downloaded binaries within along with other config files. Inside which will be stored a hash in the lock file ".terraform.lock.hcl" to make sure that once we begin defining infrastructure, Terraform knows how to communicate with services and resources. 
+[![After having run terraform init](https://i.postimg.cc/rpS1zBW7/image-2023-09-21-185334182.png)](https://postimg.cc/kVg6phTy) 
+
+#### Terraform **Plan**
+- This will generate a changeset, just like in CloudFormation, that allows Terraform to preview changes before taking effect. It's to avoid unintended changes or whoopsies when applying configurations. 
+`+`  indicates a resource to be created.
+`~`  indicates a resource to be updated.
+`-`  indicates a resource to be destroyed.
+- For example, 
+
+```bash
++ aws_instance.my_instance
+~ aws_security_group.my_security_group
+- aws_instance.old_instance
+```
+It's there to review the plan before applying changes to infrastructure 
+
+#### Terraform **Apply**
+- This is the command to make the infrastructure changes come to life. It takes the plan created in `terraform plan` and carries out the state changes by deploying and managing those resources. 
+- It turns infrastructure code into actual resources, creating servers, networks, databases and buckets. 
+ In the terminal, after running `terraform apply`, it'll ask to confirm changes. `yes` is to proceed, which can be expedited with `terraform apply --auto-approve`
+- Then, it'll CRUD those resources as defined in the configuration, store the state of the infrastructure in a state file (usually named _terraform.tfstate) to keep an eye on current state, and show an example output such as:
+
+```bash
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.my_instance will be created
+  + resource "aws_instance" "my_instance" {
+      + ami           = "ami-0c55b159cbfafe1f0"
+      + instance_type = "t2.micro"
+      # ...
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+```
+
+### Terraform **Lock** Files
+
+`.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project
+- The Terraform Lock File ***should be committed*** to your version control system (VSC) such as GitHub
+
+### Terraform **state** file
+`.terraform.tfstate` contains information about the current state of the infrastructure. 
+- This file ***should not be committed*** to the VSC because it contains sensitive data, plus if it's lost or overwritten, we lose knowing the state of our infrastructure. 
+
+- Mercifully, we have `terraform.tfstate.backup` which is the previous state of the backup, as per the `serial`
+
+
