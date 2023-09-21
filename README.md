@@ -122,3 +122,26 @@ gp env HELLO='world'
 ```
 All future workspaces launched will set the env vars for all bash terminals opened in those workspaces. 
 - Can also set env vars in the `.gitpod.yml` but this must be only used for non sensitive information for best practices
+
+### AWS CLI Installation 
+
+The AWS CLI is a command-line tool provided by Amazon Web Services (AWS) for interacting with AWS services and resources. It allows you to manage and automate AWS resources and operations directly from your terminal.
+
+- The CLI is installed for the project via the bash script [`./bin/install_aws_cli`](./bin/install_aws_cli)
+[Getting started Installing (AWS CLI)](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+- Good habit to check if AWS credentials are configured correctly by running the following CLI command: 
+```sh
+aws sts get-caller-identity
+```
+[Setting up AWS CLI Env Vars](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
+- Upon success, should be returned with a JSON payload that looks like this:
+
+```json
+AWS_ACCESS_KEY_ID='WOWOWOWOWOWOWOWOWOWO'
+AWS_SECRET_ACCESS_KEY='WOLOLOLOLOLOLOLOLOLOLOLOLOLO'
+AWS_DEFAULT_REGION='us-west-2'
+```
+
+Will need to generate ALI CLI access keys in order to gain admin permissions inhereted from IAM User. 
