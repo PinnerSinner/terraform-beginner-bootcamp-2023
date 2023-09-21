@@ -83,3 +83,42 @@ When using git init in an existing workspace or directory, it initializes a new 
 - In the GitHub repository lifecycle, "before" refers to the preparation stage before creating a repository. "Init" involves initializing a new Git repository in a local directory using git init. 
 - Once initialized, you can use various Git commands, such as git add, git commit, and git push, to manage and collaborate on your project, which are essential for version control and collaboration on GitHub.
 [Information on Workspace Lifecycle](https://www.gitpod.io/docs/configure/workspaces/workspace-lifecycle)
+
+### Working with Env Vars
+
+Environment variables, or env vars, are a way to configure software and store important information. They're like labels with values, used to customise programs. Env Vars are handy because they allow to change software settings without editing code. They consist of a name and a value, helping programs adapt to different environments. 
+- We can list out all environment variables using the `env` command 
+- We can filter specific env vars using grep, eg. `env | grep AWS_`
+
+### Setting and unsetting Env Vars
+- In the terminal we can set using `export HELLO=world`
+- And do unset, use `unset HELLO`
+- Can set an env var temporarily when just running a command
+
+```sh
+HELLO='world' ./bin/print_message
+```
+Within a bash script we can set env without writing export e.g.,
+
+```sh
+#!/usr/bin/env bash
+HELLO='world'
+echo $HELLO
+```
+
+### Printing Vars
+- We can print out an env var using echo e.g. `echo $HELLO`
+
+### Scoping of Env Vars
+Setting environment variables at the global scope typically involves defining them in a way that they are accessible to all processes and applications running on a system. It can change based on operating systems, but for Linux/Unix(bash) we can set env vars by adding them to a system-wide configuration file like `/etc/environment` or by creating custom files in the `/etc/profile.d/` directory
+- When you open up new bash terminals in VSCode it won't be aware of env vars that've been set in another window. Environment variables set in one terminal session are typically not automatically available in other terminal sessions. 
+- To persist environment variables across future Bash terminals in a way that they are available every time you open a new terminal session, you should add them to your Bash profile configuration files
+
+### Persisting env vars in GitPod
+
+We can persist env vars into gitpod by storing them in GitPod parameter store/secrets storage. 
+```
+gp env HELLO='world'
+```
+All future workspaces launched will set the env vars for all bash terminals opened in those workspaces. 
+- Can also set env vars in the `.gitpod.yml` but this must be only used for non sensitive information for best practices
