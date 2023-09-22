@@ -237,3 +237,17 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 - It's a command to nuke the infrastructure resources `terraform destroy`
 It will display a list of resources that it plans to destroy, to which we can `-- auto-approve` to expedite. 
 - Terraform will initiate the process to destroy those resources,
+
+## Issues with Terraform Cloud Login and GitPod Workspace
+
+When attempting to run `terraform login`, it will launch in bash a wiswig view to generate a token. However, it doesn't work as expected in GitPod VSCode inside the browser. 
+The workaround is to manually generate a token in Terraform cloud
+```
+https://app.terraform.io/app/settings/tokens?source=terraform-login
+``` 
+Or by pressing `p` in the wiswig bash editor, go to that same link, close and reattempt to enter the token in manually. Or create the file manually here:
+```bash
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+Provide the token and bypass the issue. 
