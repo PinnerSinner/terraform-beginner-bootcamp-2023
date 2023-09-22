@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+#Check if the alias already exists in .bash_profile
+grep -q 'alias tf="terraform"' ~ /.bash_profile
+
+# $? is a special variable that holds the exit status of last command executed
+if [ $? -ne 0 ]; then
+    # if the aliast doesn't exist, append it
+    echo 'alias tf="terraform"' >> ~/.bash_profile
+    echo "Alias added without a hitch."
+else
+    #Inform the user if the alias already exists
+    echo "Alias for Terraform/tf already exists in .bash_profile."
+fi
+
+source ~/.bash_profile
+
