@@ -251,3 +251,5 @@ touch /home/gitpod/.terraform.d/credentials.tfrc.json
 open /home/gitpod/.terraform.d/credentials.tfrc.json
 ```
 Provide the token and bypass the issue. 
+
+- Automated this workaround using the following bash script [.bin/generate_tfrc_credentials](.bin/generate_tfrc_credentials)
