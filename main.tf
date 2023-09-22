@@ -1,4 +1,22 @@
+#terraform {
+  #backend "remote" {
+   # hostname = "app.terraform.io"
+    #organization = "Marcoverse"
+
+   # workspaces {
+    #  name = "Terrahouse"
+   # }
+  #}
 terraform {
+  cloud {
+    organization = "Marcoverse"
+
+    workspaces {
+      name = "Terrahouse"
+    }
+  }
+
+
   required_providers {
     random = {
       source = "hashicorp/random"
