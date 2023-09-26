@@ -1,18 +1,25 @@
-# https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
-resource "random_string" "bucket_name" {
-  lower = true
-  upper = false
-  length   = 27
-  special  = false
+terraform {
+  #backend "remote" {
+   # hostname = "app.terraform.io"
+    #organization = "Marcoverse"
+
+   # workspaces {
+    #  name = "Terrahouse"
+   # }
+  #}
+#  cloud {
+#    organization = "Marcoverse"
+#
+#    workspaces {
+#      name = "Terrahouse"
+#    }
+#  }
+
 }
 
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
-resource "aws_s3_bucket" "example" {
-  # Bucket Naming Rules
-  #https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html?icmpid=docs_amazons3_console
-  bucket = random_string.bucket_name.result
+module "terrahouse_aws"{
+    source = "./modules/terrahouse_aws"
+    user_uuid = var.user_uuid
+    bucket_name = var.bucket_name
 
-  tags = {
-    UserUuid = var.user_uuid
-  }
 }
