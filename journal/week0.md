@@ -335,5 +335,9 @@ Provide the following code (replace your token in the file):
   }
 }
 ``````
-
+To update manually, visit Terraform Cloud > User profile > Generate token. Inside the cli type in:
+```
+gp env TERRAFORM_CLOUD_TOKEN=""
+export TERRAFORM_CLOUD_TOKEN
+```
 We have automated this workaround with the following bash script [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
