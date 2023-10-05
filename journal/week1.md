@@ -100,7 +100,7 @@ module "terrahouse_aws"{
 
 ### Modules Sources
 [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
-Using the source we can import the module from various places, such as locally, from Github, or the Terraform Registry
+Using the source we can import the module from various places, such as locally, from Github, or the Terraform Registry.
 
 ```terraform
 module "terrahouse_aws"{
