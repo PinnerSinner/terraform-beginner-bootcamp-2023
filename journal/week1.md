@@ -52,3 +52,24 @@ Terraform follows a specific order when resolving variables values:
 3 - Variables defined in `auto.tfvars`
 4 - Variables defined in `terraform.tfvars`
 It's to prioritise variables sources accordingly to avoid conflict and make sure that the right variable values are used accordingly. 
+
+## Dealing With Configuration Drift
+
+## What happens if we lose our state file?
+
+If you lose your statefile, you most likley have to tear down all your cloud infrastructure manually.
+
+You can use terraform port but it won't for all cloud resources. You need check the terraform providers documentation for which resources support import.
+
+### Fix Missing Resources with Terraform Import
+
+`terraform import aws_s3_bucket.bucket bucket-name`
+
+[Terraform Import](https://developer.hashicorp.com/terraform/cli/import)
+[AWS S3 Bucket Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+
+### Fix Manual Configuration
+
+If someone goes and delete or modifies cloud resource manually through ClickOps. 
+
+If we run Terraform plan is with attempt to put our infrstraucture back into the expected state fixing Configuration Drift
