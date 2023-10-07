@@ -12,7 +12,7 @@ $home = {}
 # This will represent our Home resources as a ruby object.
 class Home
   # ActiveModel is part of Ruby on Rails.
-  # it is used as an ObjectRelationalMapper. It has a module within
+  # it is used as an ORM. It has a module within
   # ActiveModel that provides validations.
   # The production Terratowns server is rails and uses
   # very similar and in most cases identical validation
@@ -146,7 +146,7 @@ class TerraTownsMockServer < Sinatra::Base
     home.description = description
     home.domain_name = domain_name
     home.content_version = content_version
-
+    
     # ensure our validation checks pass otherwise
     # return the errors
     unless home.valid?
