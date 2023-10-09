@@ -4,3 +4,4 @@ index_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/index.ht
 error_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/error.html"
 assets_path="/workspace/terraform-beginner-bootcamp-2023/public/assets/"
 content_version=2
+
