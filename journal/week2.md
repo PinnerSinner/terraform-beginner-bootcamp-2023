@@ -53,3 +53,13 @@ bundle exec ruby server.rb
 ```
 
 All of the code for our server is stored in the `server.rb` file.
+
+## 
+``` 
+go build -o terraform-provider-terratowns_v1.0.0 
+```
+```
+go get github..com/hashicorp/terraform-plugin-sdk/v2/helper/schema
+go get github..com/hashicorp/terraform-plugin-sdk/v2/helper/plugin
+```
+To make go.sum file which is a package lock file. And within go.mod it will include things required.
