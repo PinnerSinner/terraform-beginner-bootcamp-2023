@@ -63,3 +63,12 @@ go get github..com/hashicorp/terraform-plugin-sdk/v2/helper/schema
 go get github..com/hashicorp/terraform-plugin-sdk/v2/helper/plugin
 ```
 To make go.sum file which is a package lock file. And within go.mod it will include things required.
+
+
+## CRUD
+
+Terraform Provider resources utilize CRUD.
+
+CRUD stands for Create, Read Update, and Delete
+
+https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
