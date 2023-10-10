@@ -54,7 +54,10 @@ bundle exec ruby server.rb
 
 All of the code for our server is stored in the `server.rb` file.
 
-## 
+## weird discrepencies
+export PROJECT_ROOT="/workspace/terraform-beginner-bootcamp-2023"
+
+go get github.com/google/uuid (in terraform-provider-terratowns)
 ``` 
 go build -o terraform-provider-terratowns_v1.0.0 
 ```
