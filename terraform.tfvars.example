@@ -1,5 +1,9 @@
 terratowns_endpoint="https://terratowns.cloud/api"
-index_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/index.html"
-error_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/error.html"
-assets_path="/workspace/terraform-beginner-bootcamp-2023/public/assets/"
-content_version=1
+empires = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/empires"
+  content_version = 1 
+}
+munch = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/munch"
+  content_version = 1 
+}
